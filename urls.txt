@@ -57,7 +57,7 @@ mi.gdt.qq.com
 mq.china-qzxy.cn
 mssdk-bu.bytedance.com
 mssdk.volces.com
-nr-op.elemecdn.nr-op.elemecdn.com
+nr-op.elemecdn.com
 oss.china-qzxy.cn
 p3-ecom-ug.byteimg.com
 p4-lm.adukwai.com

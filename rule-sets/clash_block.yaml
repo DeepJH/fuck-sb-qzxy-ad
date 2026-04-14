@@ -58,7 +58,7 @@
   - DOMAIN-SUFFIX,mq.china-qzxy.cn,REJECT
   - DOMAIN-SUFFIX,mssdk-bu.bytedance.com,REJECT
   - DOMAIN-SUFFIX,mssdk.volces.com,REJECT
-  - DOMAIN-SUFFIX,nr-op.elemecdn.nr-op.elemecdn.com,REJECT
+  - DOMAIN-SUFFIX,nr-op.elemecdn.com,REJECT
   - DOMAIN-SUFFIX,oss.china-qzxy.cn,REJECT
   - DOMAIN-SUFFIX,p3-ecom-ug.byteimg.com,REJECT
   - DOMAIN-SUFFIX,p4-lm.adukwai.com,REJECT
