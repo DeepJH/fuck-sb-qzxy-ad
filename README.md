@@ -25,7 +25,7 @@
 
 ### 1. 获取规则
 
-打开本项目中的 [`clash_rules.yaml`](./clash_rules.yaml) 文件，复制其中的全部规则。
+打开本项目中的 [`clash_rules.yaml`](./rule-sets/clash_block.yaml) 文件，复制其中的全部规则。
 
 ### 2. 修改配置
 
