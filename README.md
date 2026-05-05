@@ -5,7 +5,8 @@
 >  使用了 https://bbs.kanxue.com/thread-289254.htm#msg_header_h2_11 的规则，情况可能会好转。  
 >  在此感谢作者 mb_jepgtozh 。  
 
-**fuck_sb_qzxy_ad** 是专为“趣智校园” App 定制的 Clash 拦截规则。旨在通过精准的域名与 IP 封锁，还学生用户一个清爽、无干扰的使用体验。
+**fuck_sb_qzxy_ad** 是专为“趣智校园” App 定制的 Clash 拦截规则。旨在通过精准的域名与 IP 封锁，还学生用户一个清爽、无干扰的使用体验。  
+如果想要其他软件也用上，自己问 ai 转换格式。
 
 > **趣智校园你妈爆炸**
 
@@ -13,7 +14,7 @@
 
 ## ✨ 核心特性
 
-本规则经过实测，可有效拦截趣智校园及其相关生态链的绝大部分广告行为：
+本规则经过实测，可有效拦截趣智校园及其相关生态链的绝大部分广告行为：（当时，现在不行了）
 
 * ✅ **开屏广告**：启动即秒进，无需担心晃动和误触。
 * ✅ **主页广告**：移除主页干扰视线的横幅与推荐广告。
@@ -24,12 +25,49 @@
 
 ## 📖 使用指南
 
-为了确保拦截生效，请务必按照以下步骤操作：
+> 自动更新链接: https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml
 
-> 同样也提供了最基础的url，用户可以自行转换成其他格式使用（例如adguard，已添加，为adguard_rules.txt）
+### 1. 覆写脚本(推荐)
+这里以 flclash 为例。
+1. 创建脚本。找到覆写脚本的设置（主页 > 工具 > 进阶配置 > 脚本），新建一个脚本，粘贴以下代码，保存。
+```js
+const main = (config) => {
+  // 1. 定义规则集 (Rule Providers)
+  const adRuleProviders = {
+    "fuck-sb-qzxy-ad": {
+      type: "http",
+      behavior: "domain",
+      url: "https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml",
+      path: "./ruleset/fuck-sb-qzxy-ad.yaml",
+      interval: 86400
+    },
+    // 另一个通用的优秀去广告规则
+    "awavenue": {
+      type: "http",
+      behavior: "domain",
+      url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",
+      path: "./ruleset/awavenue.yaml",
+      interval: 86400
+    }
+  };
 
-### 1. 自动更新链接
-https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml
+  // 合并到配置中
+  config["rule-providers"] = Object.assign({}, config["rule-providers"], adRuleProviders);
+
+  // 2. 插入规则 (Rules)
+  const adRules = [
+    "RULE-SET,fuck-sb-qzxy-ad,REJECT",
+    "RULE-SET,awavenue,REJECT" 
+  ];
+
+  config.rules = [...adRules, ...config.rules];
+
+  return config;
+}
+```
+2. 应用脚本。来到配置界面（主页 > 配置），然后应用覆写脚本（点击`你要用的配置`右边的三点展开选项。更多 > 覆写 > 脚本，选中脚本）
+3. 检查生效。重启软件，查看规则是否显示（主页 > 代理 > 右上角三点 > 提供者）
+4. 如果不行就问 ai 或者再试一遍。
 
 ### 2. 手动加入
 #### 1. 获取规则
@@ -57,44 +95,6 @@ rules:
 
 ```
 
-### 3. 覆写脚本
-```js
-// 定义扩展脚本
-function main(config) {
-  // 1. 定义规则集 (Rule Providers)
-  const adRuleProviders = {
-    "fuck-sb-qzxy-ad": {
-      type: "http",
-      behavior: "domain",
-      url: "https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml",
-      path: "./ruleset/fuck-sb-qzxy-ad.yaml",
-      interval: 86400
-    },
-    // 另一个优秀的广告规则，建议搭配使用
-    "awavenue": {
-      type: "http",
-      behavior: "domain",
-      url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",
-      path: "./ruleset/awavenue.yaml",
-      interval: 86400
-    }
-  };
-
-  // 合并到配置中
-  config["rule-providers"] = Object.assign({}, config["rule-providers"], adRuleProviders);
-
-  // 2. 插入规则 (Rules)
-  // 广告拦截规则通常需要放在最顶部，优先匹配
-  const adRules = [
-    "RULE-SET,fuck-sb-qzxy-ad,REJECT",
-    "RULE-SET,reject-ads,REJECT"
-  ];
-
-  config.rules = [...adRules, ...config.rules];
-
-  return config;
-}
-```
 ---
 
 ## ⚠️使用注意事项
