@@ -1,8 +1,9 @@
 # 🚫 fuck_sb_qzxy_ad
 
 > # NEED YOUR HELP
->  目前几乎不可用，如果你有好的想法，欢迎 PR 。
->  使用了 https://bbs.kanxue.com/thread-289254.htm#msg_header_h2_11 的规则，情况可能会好转。在此感谢作者 mb_jepgtozh 。
+>  目前几乎不可用，如果你有好的想法，欢迎 PR 。  
+>  使用了 https://bbs.kanxue.com/thread-289254.htm#msg_header_h2_11 的规则，情况可能会好转。  
+>  在此感谢作者 mb_jepgtozh 。  
 
 **fuck_sb_qzxy_ad** 是专为“趣智校园” App 定制的 Clash 拦截规则。旨在通过精准的域名与 IP 封锁，还学生用户一个清爽、无干扰的使用体验。
 
@@ -27,7 +28,7 @@
 
 > 同样也提供了最基础的url，用户可以自行转换成其他格式使用（例如adguard，已添加，为adguard_rules.txt）
 
-### 1. 使用链接自动更新
+### 1. 自动更新链接
 https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml
 
 ### 2. 手动加入
@@ -44,6 +45,17 @@ https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-se
 将复制的规则粘贴到 `rules:` 下方的**最前面**。
 
 > **⚠️ 注意**：Clash 的规则匹配遵循“自上而下”原则。如果放置在末尾，可能会因为前面的 `MATCH` 或其他泛域名规则导致拦截失效。
+
+```yaml
+rules:
+  # [在这里粘贴 fuck_sb_qzxy_ad 规则]
+  - DOMAIN-SUFFIX,ads.example.com,REJECT 
+  - ...
+  # 其余原始规则
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY
+
+```
 
 ### 3. 覆写脚本
 ```js
@@ -82,17 +94,6 @@ function main(config) {
 
   return config;
 }
-```
-
-```yaml
-rules:
-  # [在这里粘贴 fuck_sb_qzxy_ad 规则]
-  - DOMAIN-SUFFIX,ads.example.com,REJECT 
-  - ...
-  # 其余原始规则
-  - GEOIP,CN,DIRECT
-  - MATCH,PROXY
-
 ```
 ---
 
