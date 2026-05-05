@@ -2,6 +2,7 @@
 
 > # NEED YOUR HELP
 >  目前几乎不可用，如果你有好的想法，欢迎 PR 。
+>  使用了 https://bbs.kanxue.com/thread-289254.htm#msg_header_h2_11 的规则，情况可能会好转。在此感谢作者 mb_jepgtozh 。
 
 **fuck_sb_qzxy_ad** 是专为“趣智校园” App 定制的 Clash 拦截规则。旨在通过精准的域名与 IP 封锁，还学生用户一个清爽、无干扰的使用体验。
 
@@ -26,15 +27,19 @@
 
 > 同样也提供了最基础的url，用户可以自行转换成其他格式使用（例如adguard，已添加，为adguard_rules.txt）
 
-### 1. 获取规则
+### 1. 使用链接自动更新
+https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml
+
+### 2. 手动加入
+#### 1. 获取规则
 
 打开本项目中的 [`clash_rules.yaml`](./rule-sets/clash_block.yaml) 文件，复制其中的全部规则。
 
-### 2. 修改配置
+#### 2. 修改配置
 
 编辑你的 Clash 配置文件（通常是 `.yaml` 格式），找到 `rules:` 模块。
 
-### 3. 粘贴位置（重要！）
+#### 3. 粘贴位置（重要！）
 
 将复制的规则粘贴到 `rules:` 下方的**最前面**。
 
