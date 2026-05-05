@@ -45,6 +45,45 @@ https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-se
 
 > **⚠️ 注意**：Clash 的规则匹配遵循“自上而下”原则。如果放置在末尾，可能会因为前面的 `MATCH` 或其他泛域名规则导致拦截失效。
 
+### 3. 覆写脚本
+```js
+// 定义扩展脚本
+function main(config) {
+  // 1. 定义规则集 (Rule Providers)
+  const adRuleProviders = {
+    "fuck-sb-qzxy-ad": {
+      type: "http",
+      behavior: "domain",
+      url: "https://raw.githubusercontent.com/DeepJH/fuck-sb-qzxy-ad/refs/heads/main/rule-sets/clash_block.yaml",
+      path: "./ruleset/fuck-sb-qzxy-ad.yaml",
+      interval: 86400
+    },
+    // 另一个优秀的广告规则，建议搭配使用
+    "awavenue": {
+      type: "http",
+      behavior: "domain",
+      url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml",
+      path: "./ruleset/awavenue.yaml",
+      interval: 86400
+    }
+  };
+
+  // 合并到配置中
+  config["rule-providers"] = Object.assign({}, config["rule-providers"], adRuleProviders);
+
+  // 2. 插入规则 (Rules)
+  // 广告拦截规则通常需要放在最顶部，优先匹配
+  const adRules = [
+    "RULE-SET,fuck-sb-qzxy-ad,REJECT",
+    "RULE-SET,reject-ads,REJECT"
+  ];
+
+  config.rules = [...adRules, ...config.rules];
+
+  return config;
+}
+```
+
 ```yaml
 rules:
   # [在这里粘贴 fuck_sb_qzxy_ad 规则]
